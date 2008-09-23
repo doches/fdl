@@ -1,0 +1,19 @@
+To generate ruby code for an FDL file, run:
+  tools/generate.rb <file.fdl> [-noedit]
+  
+To test a feature extractor against Salsa/Tiger XML, run:
+  cat <file.xml> | tools/test.rb <extractor.rb>
+
+To view the AST for an FDL feature, run:
+  cat <file.fdl> | parser/parser | ./fdl2tree.rb | tools/printtree.rb
+  
+To view the parse tree for a Salsa/Tiger XML document, run:
+  cat <file.xml> | lib/xml2pt.rb
+
+=== OLD ===
+
+To parse a file containing FDL definitions into Ruby, run:
+  ./fdl2tree.rb <file.fdl> <output.yaml>
+  ./tree2ruby.rb <input.yaml> <output.rb>
+<output.rb> will contain the code for a Ruby object with methods to extract
+each feature.

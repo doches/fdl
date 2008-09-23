@@ -1,0 +1,69 @@
+# Features that test different parts of FDL. Used by test/featuretest.rb
+# Results for pie.xml are listed for each feature
+
+# pie._0_502
+feature update_parentof
+  all(x,x:[]) and x \* [is=root]
+  <x.id>
+
+# 5
+feature not_rebind_and
+  all(x,x:[]) and (not x:[is=root] or true) and (not x:[id="pie._0_3"] or true)
+  <x.id>
+
+# 3
+feature regex
+  all(x,x:[word!=nil and word!='pie'])
+  <x.size>
+
+# false
+feature negate2
+  not [] / [is=root]
+
+# true
+feature negate
+  not [] \ [is=root]
+
+# called by feature noderef
+node leaves
+  all(x,x:[word!=nil])
+  <x>
+  
+# 3
+feature noderef
+  all(x,x:[] \ leaves)
+  <x.size>
+
+# 5
+feature or_binding
+  all(x,(x:[] / [id="pie._0_502"]) or (x:[word!=nil]))
+  <x.size>
+
+# 0,7
+feature and_or
+  all(x,x:[word=nil] and x:[word!=nil]) and
+  all(y,y:[word=nil] or y:[word!=nil])
+  <x.size,y.size>
+
+# self.id
+feature is_equal
+  x:[is=self]
+  <x.id>
+
+# 4
+feature universal_size
+  all(x,x:[word!=nil])
+  <x.size>
+  
+# [pie._0_502,pie._0_501,pie._0_500]
+feature list_ids
+  all(x,x:[word=nil])
+  <x.id>
+
+# true
+feature matching1
+  [is=root] \ []
+  
+# false
+feature matching2
+  [is=root] / []

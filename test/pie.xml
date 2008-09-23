@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <corpus corpusname="corpus" target="">
+	<head>
+		<meta>
+			<format>
+			NeGra format, version 3</format>
+		</meta>
+		<frames xmlns="http://www.clt-st.de/framenet/frame-database">
+		</frames>
+		<wordtags xmlns="http://www.clt-st.de/salsa/wordtags">
+		</wordtags>
+		<flags>
+		</flags>
+		<annotation>
+			<edgelabel>
+			</edgelabel>
+			<secedgelabel>
+			</secedgelabel>
+		</annotation>
+	</head>
+	<body>
+<s id='pie._0'>
+<graph root='pie._0_502'>
+<terminals>
+<t word='I' id='pie._0_0' lemma='I' pos='PRP'>
+</t>
+<t word='eat' id='pie._0_1' lemma='eat' pos='VBP'>
+</t>
+<t word='pie' id='pie._0_2' lemma='pie' pos='NN'>
+</t>
+<t word='.' id='pie._0_3' lemma='.' pos='PUNC.'>
+</t>
+</terminals>
+<nonterminals>
+<nt head='eat' cat='S' id='pie._0_502'>
+<edge label='-' idref='pie._0_0'/>
+<edge label='-' idref='pie._0_501'/>
+</nt>
+<nt head='pie' cat='NPB' id='pie._0_500'>
+<edge label='-' idref='pie._0_2'/>
+<edge label='-' idref='pie._0_3'/>
+</nt>
+<nt head='eat' cat='VP' id='pie._0_501'>
+<edge label='-' idref='pie._0_1'/>
+<edge label='-' idref='pie._0_500'/>
+</nt>
+</nonterminals>
+</graph>
+<sem>
+<globals>
+</globals>
+<frames>
+</frames>
+<usp>
+<uspframes>
+</uspframes>
+<uspfes>
+</uspfes>
+</usp>
+</sem>
+</s>
+	</body>
+</corpus>

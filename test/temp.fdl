@@ -1,0 +1,3 @@
+feature f
+  x:[]
+  <x.id>

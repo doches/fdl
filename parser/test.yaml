@@ -1,0 +1,62 @@
+--- 
+- !ruby/object:Node 
+  indent: 0
+  key: "0x60a590"
+  left: !ruby/object:Node 
+    indent: 2
+    key: "0x60a3d0"
+    left: !ruby/object:Node 
+      indent: 4
+      key: "0x60a370"
+      left: !ruby/object:Node 
+        indent: 6
+        key: "0x60a340"
+        left: !ruby/object:Node 
+          indent: 8
+          key: "0x60a2e0"
+          left: !ruby/object:Node 
+            indent: 10
+            key: "0x60a1e0"
+            left: 
+            right: 
+            string: is
+            type: STRING
+          right: !ruby/object:Node 
+            indent: 10
+            key: "0x60a2b0"
+            left: 
+            right: 
+            string: self
+            type: STRING
+          string: ""
+          type: EQUALS
+        right: 
+        string: ""
+        type: NODEDESC
+      right: 
+      string: c
+      type: BIND
+    right: 
+    string: ""
+    type: EXPR
+  right: !ruby/object:Node 
+    indent: 2
+    key: "0x60a530"
+    left: !ruby/object:Node 
+      indent: 4
+      key: "0x60a500"
+      left: 
+      right: 
+      string: c
+      type: STRING
+    right: !ruby/object:Node 
+      indent: 4
+      key: "0x60a4d0"
+      left: 
+      right: 
+      string: head
+      type: STRING
+    string: ""
+    type: DOT
+  string: headword
+  type: FEATURE
