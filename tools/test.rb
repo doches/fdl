@@ -1,14 +1,22 @@
 #!/usr/bin/ruby
-require 'lib/xml2pt'
 
 # Get parse tree(s)
 input = ""
+sentences = nil
 if not ARGV[1].nil?
   IO.foreach(ARGV[1]) { |l| input += l }
+  if ARGV[1] =~ /\.xml/
+    require 'lib/xml2pt'
+    sentences = XMLSentence.xml2parsetree(input)
+  else
+    require 'lib/bracket2pt'
+    sentences = BracketSentence.lines2parsetree(input.split("\n"))
+  end
 else
+  require 'lib/xml2pt'
   STDIN.each_line { |l| input += l }
+  sentences = XMLSentence.xml2parsetree(input)
 end
-sentences = XMLSentence.xml2parsetree(input)
 
 # Get features
 feature_file = ARGV[0]
