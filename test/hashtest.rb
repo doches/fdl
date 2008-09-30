@@ -10,7 +10,7 @@ class HashTest < Test::Unit::TestCase
     @a[:y] = [:a,:b]
     @b[:x] = [:b,:c,:d]
     @b[:y] = [:c]
-    @sentence = XMLSentence.xml2parsetree('data/pie.xml')[0]
+    @sentence = XMLSentence.xml2parsetree('test/pie.xml')[0]
     ParseNodeSet.tree=@sentence
   end
   

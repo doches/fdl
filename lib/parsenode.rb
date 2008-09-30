@@ -3,11 +3,7 @@ require 'lib/parsenodeset.rb'
 # Make this less dumb.
 # Damn, this is dumb.
 def rand_range(min,max)
-  x = min+rand
-  while not (x >= min and x <= max)
-    x = (rand * (max - min + 1)) + min
-  end
-  return x
+  return min + (max-min)*rand
 end
 
 # An individual node in the parse tree. Used by xml2pt.rb
@@ -29,6 +25,12 @@ class ParseNode < Hash
   # Get nodes along the specified path matching the provided block
   def traverse(operator,match)
     ParseNodeSet.new(self).traverse(operator,match)
+  end
+  
+  def print_tree(i=0)
+    i.times { print "\t" }
+    print self.inspect,"\n"
+    @children.each { |child| child.print_tree(i+1) }
   end
   
   # Assign indices to this node and its children, for left/right-of operators.

@@ -7,9 +7,29 @@ class BracketSentence
   attr_reader :root,:predicates,:nodes
   
   def initialize(sentence)
-    @nodes = {}
-    
     @root = generate(sentence)
+
+    # Nodes
+    id = (Time.now.to_f * 100000 % 100000000000).to_i
+    i = 0
+    @nodes = {}
+    bucket = [@root]
+    while not bucket.empty?
+      elem = bucket.shift
+      if not elem.nil?
+        bucket = [bucket,elem.children.set].flatten
+        elem[:id] = "#{id}.#{i}"
+        @nodes[elem[:id]] = elem
+        i += 1
+      end
+    end
+    
+    # Predicates
+    @predicates = []
+    @nodes.each { |key,node| @predicates.push(node) if not node[:cat].nil? and node[:cat].include?("V") }
+    
+    # Assign indices
+    @root.generate_indices(1.0)
   end
   
   def generate(str,i=0)
@@ -61,6 +81,16 @@ class BracketSentence
       end
     }
     return str.slice(l,index+1)
+  end
+
+  def BracketSentence.file2parsetree(file)
+    throw "File #{file} not found!" if not File.exists?(file)
+    
+    fin = File.open(file,"r")
+    input = ""
+    fin.each_line { |l| input += l }
+    fin.close
+    return BracketSentence.lines2parsetree(input)
   end
 
   def BracketSentence.lines2parsetree(lines)

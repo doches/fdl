@@ -4,9 +4,9 @@ require 'lib/parsenode'
 require 'lib/extractor'
 
 class ExtractorTest < Test::Unit::TestCase
-  # Load "I eat pie." from data/
+  # Load "I eat pie." from test/
   def setup
-    @sentence = XMLSentence.xml2parsetree('data/pie.xml')[0]
+    @sentence = XMLSentence.xml2parsetree('test/pie.xml')[0]
     ParseNodeSet.tree=@sentence
     
     @root = @sentence.root

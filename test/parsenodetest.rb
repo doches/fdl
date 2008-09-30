@@ -5,8 +5,16 @@ require 'lib/parsenode'
 class ParseNodeTest < Test::Unit::TestCase
   # Load "I eat pie." from data/
   def setup
-    @sentence = XMLSentence.xml2parsetree('data/pie.xml')[0]
+    @sentence = XMLSentence.xml2parsetree('test/pie.xml')[0]
     ParseNodeSet.tree=@sentence
+  end
+  
+  def test_rand_range
+    100.times do
+      r = rand_range(0.5,1.5)
+      assert r >= 0.5
+      assert r <= 1.5
+    end
   end
   
   def teardown
