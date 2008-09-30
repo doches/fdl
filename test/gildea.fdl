@@ -1,0 +1,31 @@
+# Example features from Gildea & Jurafsky
+
+feature PhraseType
+  x:[is=self]
+  <x.cat>
+  
+feature GoverningCategory
+  [is=self and cat='NP'] /* gov:[cat='S|VP'] and
+  gov \ gov_below:[] and
+  gov_below \* [is=self]
+  <gov.cat>
+
+node LCA
+  [is=self] /* x:[] and x \* [is=target]
+  <x>
+
+feature Path
+  all(up, [is=self] /* up:[] and up /* LCA) and
+  all(down,[is=target] /* down:[] and down /* LCA) and
+  top:LCA
+  <up.cat, "\<", top.cat, "\>", down.cat>
+
+feature LeftOf
+  [is=target] <* [is=self]
+
+feature RightOf
+  [is=target] >* [is=self]
+
+feature HeadWord
+  x:[is=self]
+  <x.head>
