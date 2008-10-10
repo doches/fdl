@@ -60,15 +60,13 @@ else
     require 'lib/bracket2pt'
     sentences = BracketSentence.lines2parsetree(input.split("\n"))
   elsif options.format == :auto
-    begin
-      require 'lib/xml2pt'
-      sentences = XMLSentence.xml2parsetree(input)
-      throw :try_bracket if sentences.empty?
-    rescue 
+    require 'lib/xml2pt'
+    sentences = XMLSentence.xml2parsetree(input)
+    if sentences.empty?
       begin
         require 'lib/bracket2pt'
         sentences = BracketSentence.lines2parsetree(input.split("\n"))
-      rescue
+      rescue NoMethodError
         STDERR.print "Unknown input format -- FDL only understands SalsaTigerXML and treebank-style trees, one tree per line\n"
         exit(1)
       end
