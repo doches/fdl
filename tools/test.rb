@@ -9,8 +9,7 @@ optparser = OptionParser.new do |opts|
   opts.banner = "Usage: ./test.rb path/to/input.xml [options]"
   opts.banner = <<USE
 test.rb featurizes preprocessed input, which can be either SalsaTiger XML
-preprocessed by Shalmaneser, or Treebank bracketed parse trees, one tree per
-line.
+preprocessed by Shalmaneser, or Treebank bracketed parse trees.
 
 Usage: ./test.rb path/to/feature_extractor.rb path/to/input [OPTIONS]
   OR
