@@ -3,6 +3,12 @@
 require 'rexml/document'
 require 'lib/parsenode'
 
+class String
+  def count(char)
+    return " #{self} ".split(char).size - 1
+  end
+end
+
 class BracketSentence
   attr_reader :root,:predicates,:nodes
   
@@ -88,7 +94,9 @@ class BracketSentence
     
     fin = File.open(file,"r")
     input = ""
-    fin.each_line { |l| input += l }
+    fin.each_line { |l| 
+      input += l
+    }
     fin.close
     return BracketSentence.lines2parsetree(input)
   end
@@ -96,10 +104,15 @@ class BracketSentence
   def BracketSentence.lines2parsetree(lines)
     sentences = []
   
+    tree = ""
     lines.each do |line|
-      sentence = BracketSentence.new(line)
-      sentence.generate_indices
-      sentences.push sentence
+      tree += line.strip + " "
+      if tree.count("(") == tree.count(")")
+        sentence = BracketSentence.new(tree)
+        sentence.generate_indices
+        sentences.push sentence
+        tree = ""
+      end
     end
     return sentences
   end
