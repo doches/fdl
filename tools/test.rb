@@ -5,6 +5,7 @@ require 'ostruct'
 
 options = OpenStruct.new
 options.format=:auto
+options.growl=false
 optparser = OptionParser.new do |opts|
   opts.banner = "Usage: ./test.rb path/to/input.xml [options]"
   opts.banner = <<USE
@@ -23,6 +24,16 @@ USE
           "  Default is AUTO, which will treat input from STDIN and with a .xml",
           "  file extension as XML, and all other input as TREEBANK") do |format|
     options.format = format
+  end
+  
+  opts.on("--growl","-g","Enable Growl notifications (using ruby-growl)") do
+    begin
+      require 'lib/ruby-growl'
+      @growl = Growl.new("127.0.0.1","FDL",["begin","end"])
+      options.growl = true
+    rescue
+      STDERR.puts("Unable to load ruby-growl, continuing without growl notifications")
+    end
   end
    
   opts.on_tail("-h","--help","Show this help text") do
@@ -73,6 +84,9 @@ else
   end
 end
 
+# Send a [begin] notification, if enabled
+@growl.notify("begin","Featurising","Starting FDL featurisation") if options.growl
+
 # Get features
 feature_file = ARGV[0]
 require "#{feature_file}"
@@ -91,3 +105,6 @@ sentences.each { |sent|
     }
   }
 }
+
+# Send a [end] notification, if enabled
+@growl.notify("end","Done featurising","Finished FDL featurisation") if options.growl
